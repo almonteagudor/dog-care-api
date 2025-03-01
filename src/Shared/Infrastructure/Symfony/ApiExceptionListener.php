@@ -37,7 +37,9 @@ final readonly class ApiExceptionListener
 
     private function exceptionCodeFor(Throwable $error): string
     {
-        return $error instanceof DomainException::class
+        $domainErrorClass = DomainException::class;
+
+        return $error instanceof $domainErrorClass
             ? $error->errorCode()
             : Utils::toSnakeCase($this->extractClassName($error));
     }
