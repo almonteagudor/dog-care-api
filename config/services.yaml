@@ -9,6 +9,9 @@ services:
         resource: '../app/Controller/'
         tags: [ 'controller.service_arguments' ]
 
+    App\Tests\DataFixtures\Fixtures\:
+        resource: '../tests/DataFixtures/Fixtures'
+
     DogCare\:
         resource: '../src/'
 
