@@ -28,7 +28,7 @@ final class Assert
         }
     }
 
-    public static function subclassOf(string $value, string $className, string $message = null): bool
+    public static function subclassOf(string $value, string $className, ?string $message = null): bool
     {
         if (!is_subclass_of($value, $className)) {
             throw new InvalidArgumentException(
