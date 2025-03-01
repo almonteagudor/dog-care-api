@@ -1,0 +1,48 @@
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    container_name: dog-care-api-nginx
+    depends_on:
+      - php
+    environment:
+      - HOST=localhost
+      - PORT=80
+      - PHP_HOST=dog-care-api-php
+      - PHP_PORT=9000
+    ports:
+      - '80:80'
+  php:
+    build:
+      context: docker/php
+      args:
+        - USER_NAME=${USER_NAME:-user}
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    container_name: dog-care-api-php
+    depends_on:
+      - mysql
+    environment:
+      - XDEBUG_CLIENT_HOST=${XDEBUG_CLIENT_HOST:-host.docker.internal}
+      - XDEBUG_CLIENT_PORT=${XDEBUG_CLIENT_PORT:-9003}
+      - PHP_IDE_CONFIG=${PHP_IDE_CONFIG:-serverName=Docker}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - '9000:9000'
+    volumes:
+      - '.:/var/www/html'
+  mysql:
+    container_name: dog-care-api-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: dog-care-api
+      MYSQL_USER: montisgal
+      MYSQL_PASSWORD: montisgal
+    image: mysql:8.2.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - dog-care-api-db:/var/lib/mysql
+volumes:
+  dog-care-api-db:
