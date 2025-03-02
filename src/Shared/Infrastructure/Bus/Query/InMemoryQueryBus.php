@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace DogCare\Shared\Infrastructure\Bus\Query;
 
 use DogCare\Shared\Domain\Bus\Query\Query;
+use DogCare\Shared\Domain\Bus\Query\QueryBus;
 use DogCare\Shared\Domain\Bus\Query\QueryHandler;
 use DogCare\Shared\Domain\Bus\Query\Response;
 
-final readonly class InMemoryQueryBus
+final readonly class InMemoryQueryBus implements QueryBus
 {
     /**
      * @param iterable<QueryHandler> $queryHandlers

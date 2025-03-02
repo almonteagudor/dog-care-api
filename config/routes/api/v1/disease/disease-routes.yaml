@@ -1,0 +1,18 @@
+post-disease:
+  controller: \App\Controller\Disease\PostDiseaseController
+  methods: POST
+  path: /diseases/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+get-disease:
+  controller: \App\Controller\Disease\GetDiseaseController
+  methods: GET
+  path: /diseases/{id}
+  requirements:
+    id: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+
+get-diseases:
+  controller: \App\Controller\Disease\GetDiseasesController
+  methods: GET
+  path: /diseases

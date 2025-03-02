@@ -65,7 +65,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "migrate-reset": "sh scripts/migrate-reset.sh"
     },
     "conflict": {
         "symfony/symfony": "*"
