@@ -51,6 +51,40 @@ abstract class FunctionalTestCase extends WebTestCase
     }
 
     /**
+     * @param array<string, string> $parameters
+     * @param array<string, mixed> $body
+     */
+    protected function httpPut(string $routeName, array $parameters = [], array $body = []): Response
+    {
+        $uri = $this->client->getContainer()->get('router')->generate($routeName, $parameters);
+
+        $this->client->request(
+            'PUT',
+            $uri,
+            server: ['CONTENT_TYPE' => 'application/json'],
+            content: json_encode($body),
+        );
+
+        return $this->client->getResponse();
+    }
+
+    /**
+     * @param array<string, string> $parameters
+     */
+    protected function httpDelete(string $routeName, array $parameters = []): Response
+    {
+        $uri = $this->client->getContainer()->get('router')->generate($routeName, $parameters);
+
+        $this->client->request(
+            'DELETE',
+            $uri,
+            server: ['CONTENT_TYPE' => 'application/json'],
+        );
+
+        return $this->client->getResponse();
+    }
+
+    /**
      * @return array<string, string>
      * @throws Exception
      */

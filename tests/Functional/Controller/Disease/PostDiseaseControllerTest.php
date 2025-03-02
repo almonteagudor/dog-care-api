@@ -16,7 +16,7 @@ class PostDiseaseControllerTest extends FunctionalTestCase
 {
     public function testPostDiseaseCreatedResponse(): void
     {
-        $disease = new Disease(DiseaseId::random(), new DiseaseName('name'), new DiseaseDescription('description'));
+        $disease = new Disease(DiseaseId::random(), new DiseaseName('Name'), new DiseaseDescription('Description'));
 
         $response = $this->httpPost(
             'post-disease',
@@ -37,8 +37,8 @@ class PostDiseaseControllerTest extends FunctionalTestCase
     {
         $diseaseData = new Disease(
             DiseaseId::random(),
-            new DiseaseName('name'),
-            new DiseaseDescription('description'),
+            new DiseaseName('Name'),
+            new DiseaseDescription('Description'),
         )->toPrimitives();
 
         unset($diseaseData[DiseaseName::primitiveName()]);
@@ -56,8 +56,8 @@ class PostDiseaseControllerTest extends FunctionalTestCase
     {
         $diseaseData = new Disease(
             DiseaseId::random(),
-            new DiseaseName('name'),
-            new DiseaseDescription('description'),
+            new DiseaseName('Name'),
+            new DiseaseDescription('Description'),
         )->toPrimitives();
 
         unset($diseaseData[DiseaseDescription::primitiveName()]);
@@ -75,8 +75,8 @@ class PostDiseaseControllerTest extends FunctionalTestCase
     {
         $diseaseData = new Disease(
             DiseaseId::random(),
-            new DiseaseName('name'),
-            new DiseaseDescription('description'),
+            new DiseaseName('Name'),
+            new DiseaseDescription('Description'),
         )->toPrimitives();
 
         $diseaseData[DiseaseName::primitiveName()] = null;
@@ -94,8 +94,8 @@ class PostDiseaseControllerTest extends FunctionalTestCase
     {
         $diseaseData = new Disease(
             DiseaseId::random(),
-            new DiseaseName('name'),
-            new DiseaseDescription('description'),
+            new DiseaseName('Name'),
+            new DiseaseDescription('Description'),
         )->toPrimitives();
 
         $diseaseData[DiseaseDescription::primitiveName()] = null;

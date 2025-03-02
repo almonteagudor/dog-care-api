@@ -80,7 +80,7 @@ abstract readonly class DoctrineRepository
         $this->connection->update(
             $this->tableName(),
             $this->aggregateToColumns($aggregateRoot),
-            [$aggregateRoot->id->primitiveName(), $aggregateRoot->id->value()],
+            [$aggregateRoot->id->primitiveName() => $aggregateRoot->id->value()],
         );
     }
 

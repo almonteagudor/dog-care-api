@@ -5,6 +5,20 @@ post-disease:
   requirements:
     id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
 
+put-disease:
+  controller: \App\Controller\Disease\PutDiseaseController
+  methods: PUT
+  path: /diseases/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+delete-disease:
+  controller: \App\Controller\Disease\DeleteDiseaseController
+  methods: DELETE
+  path: /diseases/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
 get-disease:
   controller: \App\Controller\Disease\GetDiseaseController
   methods: GET
