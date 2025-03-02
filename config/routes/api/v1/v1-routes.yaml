@@ -1,1 +1,2 @@
-
+disease:
+    resource: disease/disease-routes.yaml
