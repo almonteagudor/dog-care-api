@@ -6,9 +6,9 @@ namespace DogCare\Shared\Domain\ValueObject;
 
 abstract readonly class ValueObject
 {
-    public function equals(self $other): bool
+    public function equals(?object $other): bool
     {
-        return $this->primitiveName() === $other->primitiveName() && $this->value() === $other->value();
+        return $other instanceof (static::class) && $this->value() === $other->value();
     }
 
     public static abstract function primitiveName(): string;

@@ -14,7 +14,7 @@ use DogCare\Shared\Domain\Criteria\Order;
 use DogCare\Shared\Domain\Exception\NotFoundException;
 use DogCare\Shared\Domain\ValueObject\Uuid;
 
-final class DiseaseFinder
+final readonly class DiseaseFinder
 {
     public function __construct(private DiseaseRepository $repository)
     {

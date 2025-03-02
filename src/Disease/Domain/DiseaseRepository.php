@@ -14,9 +14,7 @@ interface DiseaseRepository
      */
     public function match(Criteria $criteria): array;
 
-    public function insert(Disease $disease): void;
+    public function save(Disease $disease): void;
 
-    public function update(Disease $disease): void;
-
-    public function delete(Uuid $id): void;
+    public function delete(DiseaseId $id): void;
 }

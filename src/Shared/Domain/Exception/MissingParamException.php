@@ -11,7 +11,7 @@ class MissingParamException extends RuntimeException
 {
     private const string MESSAGE = 'Missing parameter - %s';
 
-    public function __construct(string $argument, Throwable $previous = null)
+    public function __construct(string $argument, ?Throwable $previous = null)
     {
         $message = sprintf(self::MESSAGE, $argument);
 

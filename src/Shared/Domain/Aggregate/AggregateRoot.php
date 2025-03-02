@@ -8,14 +8,17 @@ use DogCare\Shared\Domain\ValueObject\Uuid;
 
 abstract class AggregateRoot
 {
+    public function __construct(
+        private(set) readonly Uuid $id,
+    ) {
+    }
+
     public static abstract function primitiveName(): string;
 
     /**
      * @param array<string, mixed> $data
      */
     public abstract static function fromPrimitives(array $data): self;
-
-    public abstract function id(): Uuid;
 
     /**
      * @return array<string, mixed>

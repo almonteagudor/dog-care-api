@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace DogCare\Disease\Application\Create;
 
 use DogCare\Disease\Domain\Disease;
-use DogCare\Disease\Domain\DiseaseDescription;
 use DogCare\Disease\Domain\DiseaseFinder;
 use DogCare\Disease\Domain\DiseaseId;
-use DogCare\Disease\Domain\DiseaseName;
 use DogCare\Disease\Domain\DiseaseRepository;
 use DogCare\Shared\Domain\Bus\Command\CommandHandler;
 use DogCare\Shared\Domain\Exception\AlreadyStoredException;
@@ -29,13 +27,7 @@ final readonly class CreateDiseaseCommandHandler implements CommandHandler
 
             throw new AlreadyStoredException(Disease::primitiveName(), $id->value());
         } catch (NotFoundException) {
-            $this->repository->insert(
-                new Disease(
-                    new DiseaseId($command->id),
-                    new DiseaseName($command->name),
-                    $command->description ? new DiseaseDescription($command->description) : null,
-                ),
-            );
+            Disease::create($command->id, $command->name, $command->description)->save($this->repository);
         }
     }
 }

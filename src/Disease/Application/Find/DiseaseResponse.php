@@ -20,9 +20,9 @@ final readonly class DiseaseResponse implements Response
     public static function fromDisease(Disease $disease): self
     {
         return new self(
-            $disease->id()->value(),
-            $disease->name()->value(),
-            $disease->description()?->value(),
+            $disease->id->value(),
+            $disease->name->value(),
+            $disease->description?->value(),
         );
     }
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DogCare\Disease\Domain;
 
+use DogCare\Disease\Infrastructure\DiseaseDoctrineRepository;
 use DogCare\Shared\Domain\Aggregate\AggregateRoot;
 use DogCare\Shared\Domain\ValueObject\CreatedAt;
 use DogCare\Shared\Domain\ValueObject\DeletedAt;
@@ -11,14 +12,27 @@ use DogCare\Shared\Domain\ValueObject\UpdatedAt;
 
 final class Disease extends AggregateRoot
 {
+    public static function create(
+        string $id,
+        string $name,
+        ?string $description,
+    ): self {
+        return new self(
+            new DiseaseId($id),
+            new DiseaseName($name),
+            $description ? new DiseaseDescription($description) : null,
+        );
+    }
+
     public function __construct(
-        private readonly DiseaseId $id,
-        private DiseaseName $name,
-        private ?DiseaseDescription $description,
-        private readonly CreatedAt $createdAt = new CreatedAt(),
-        private ?UpdatedAt $updatedAt = null,
-        private ?DeletedAt $deletedAt = null,
+        DiseaseId $id,
+        private(set) DiseaseName $name,
+        private(set) ?DiseaseDescription $description,
+        private(set) readonly CreatedAt $createdAt = new CreatedAt(),
+        private(set) ?UpdatedAt $updatedAt = null,
+        private(set) ?DeletedAt $deletedAt = null,
     ) {
+        parent::__construct($id);
     }
 
     public static function fromPrimitives(array $data): Disease
@@ -44,57 +58,6 @@ final class Disease extends AggregateRoot
         return 'disease';
     }
 
-    public function id(): DiseaseId
-    {
-        return $this->id;
-    }
-
-    public function name(): DiseaseName
-    {
-        return $this->name;
-    }
-
-    public function updateName(DiseaseName $name): void
-    {
-        if (!$this->name->equals($name)) {
-            $this->name = $name;
-            $this->updatedAt = new UpdatedAt();
-        }
-    }
-
-    public function description(): ?DiseaseDescription
-    {
-        return $this->description;
-    }
-
-    public function updateDescription(?DiseaseDescription $description): void
-    {
-        if (!$this->description->equals($description)) {
-            $this->description = $description;
-            $this->updatedAt = new UpdatedAt();
-        }
-    }
-
-    public function createdAt(): CreatedAt
-    {
-        return $this->createdAt;
-    }
-
-    public function updatedAt(): ?UpdatedAt
-    {
-        return $this->updatedAt;
-    }
-
-    public function deletedAt(): ?DeletedAt
-    {
-        return $this->deletedAt;
-    }
-
-    public function delete(): void
-    {
-        $this->deletedAt = new DeletedAt();
-    }
-
     public function toPrimitives(): array
     {
         return [
@@ -105,5 +68,34 @@ final class Disease extends AggregateRoot
             UpdatedAt::primitiveName() => $this->updatedAt?->value(),
             DeletedAt::primitiveName() => $this->deletedAt?->value(),
         ];
+    }
+
+    public function updateName(DiseaseName $name): void
+    {
+        if (!$this->name->equals($name)) {
+            $this->name = $name;
+            $this->updatedAt = new UpdatedAt();
+        }
+    }
+
+    public function updateDescription(?DiseaseDescription $description): void
+    {
+        if ($this->description?->equals($description) || $this->description === $description) {
+            return;
+        }
+
+        $this->description = $description;
+        $this->updatedAt = new UpdatedAt();
+    }
+
+    public function save(DiseaseDoctrineRepository $repository): void
+    {
+        $repository->save($this);
+    }
+
+    public function delete(DiseaseDoctrineRepository $repository): void
+    {
+        $this->deletedAt = new DeletedAt();
+        $repository->save($this);
     }
 }
