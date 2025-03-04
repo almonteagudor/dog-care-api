@@ -12,7 +12,6 @@ use DogCare\Shared\Domain\Criteria\Filters;
 use DogCare\Shared\Domain\Criteria\FilterValue;
 use DogCare\Shared\Domain\Criteria\Order;
 use DogCare\Shared\Domain\Exception\NotFoundException;
-use DogCare\Shared\Domain\ValueObject\Uuid;
 
 final readonly class DiseaseFinder
 {
@@ -20,7 +19,7 @@ final readonly class DiseaseFinder
     {
     }
 
-    public function findById(Uuid $id): Disease
+    public function findById(DiseaseId $id): Disease
     {
         $diseases = $this->repository->match(
             new Criteria(
