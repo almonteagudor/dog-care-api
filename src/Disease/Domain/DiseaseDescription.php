@@ -20,6 +20,6 @@ final readonly class DiseaseDescription extends StringValueObject
 
     public static function primitiveName(): string
     {
-        return 'description';
+        return 'disease_description';
     }
 }
