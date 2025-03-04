@@ -88,12 +88,12 @@ final class Disease extends AggregateRoot
         $this->updatedAt = new UpdatedAt();
     }
 
-    public function save(DiseaseDoctrineRepository $repository): void
+    public function save(DiseaseRepository $repository): void
     {
         $repository->save($this);
     }
 
-    public function delete(DiseaseDoctrineRepository $repository): void
+    public function delete(DiseaseRepository $repository): void
     {
         $this->deletedAt = new DeletedAt();
         $repository->save($this);
