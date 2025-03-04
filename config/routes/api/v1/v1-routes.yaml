@@ -1,2 +1,5 @@
+allergy:
+    resource: allergy/allergy-routes.yaml
+
 disease:
     resource: disease/disease-routes.yaml
