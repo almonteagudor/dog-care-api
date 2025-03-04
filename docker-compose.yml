@@ -7,7 +7,7 @@ services:
       - php
     environment:
       HOST: localhost
-      PORT: ${APP_PORT:-80}:80
+      PORT: ${APP_PORT:-80}
       PHP_HOST: dog-care-api-php
       PHP_PORT: 9000
     ports:
