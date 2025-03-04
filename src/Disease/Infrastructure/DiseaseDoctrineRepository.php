@@ -30,11 +30,17 @@ readonly class DiseaseDoctrineRepository extends DoctrineRepository implements D
         return array_map(fn ($diseaseData) => Disease::fromPrimitives($diseaseData), $data);
     }
 
+    /**
+     * @throws Exception
+     */
     public function save(Disease $disease): void
     {
         $this->saveInDoctrine($disease);
     }
 
+    /**
+     * @throws Exception
+     */
     public function delete(DiseaseId $id): void
     {
         $this->deleteInDoctrine($id);
