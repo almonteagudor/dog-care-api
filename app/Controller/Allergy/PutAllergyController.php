@@ -22,7 +22,13 @@ class PutAllergyController extends ApiController
     {
         $body = $this->body($request);
 
-        $this->dispatch(new UpdateAllergyCommand($id, $body['name'], $body['description'] ?? null));
+        $this->dispatch(
+            new UpdateAllergyCommand(
+                $id,
+                $body[AllergyName::primitiveName()],
+                $body[AllergyDescription::primitiveName()] ?? null,
+            ),
+        );
 
         return new JsonResponse(null, Response::HTTP_OK);
     }

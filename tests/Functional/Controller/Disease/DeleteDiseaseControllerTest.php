@@ -11,7 +11,6 @@ use DogCare\Disease\Domain\DiseaseDescription;
 use DogCare\Disease\Domain\DiseaseId;
 use DogCare\Disease\Domain\DiseaseName;
 use DogCare\Shared\Domain\ValueObject\DeletedAt;
-use DogCare\Shared\Domain\ValueObject\UpdatedAt;
 use Symfony\Component\HttpFoundation\Response;
 
 class DeleteDiseaseControllerTest extends FunctionalTestCase

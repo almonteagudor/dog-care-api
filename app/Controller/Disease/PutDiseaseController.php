@@ -22,7 +22,13 @@ class PutDiseaseController extends ApiController
     {
         $body = $this->body($request);
 
-        $this->dispatch(new UpdateDiseaseCommand($id, $body['name'], $body['description'] ?? null));
+        $this->dispatch(
+            new UpdateDiseaseCommand(
+                $id,
+                $body[DiseaseName::primitiveName()],
+                $body[DiseaseDescription::primitiveName()] ?? null,
+            ),
+        );
 
         return new JsonResponse(null, Response::HTTP_OK);
     }

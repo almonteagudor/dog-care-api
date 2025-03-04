@@ -22,7 +22,13 @@ class PostAllergyController extends ApiController
     {
         $body = $this->body($request);
 
-        $this->dispatch(new CreateAllergyCommand($id, $body['name'], $body['description'] ?? null));
+        $this->dispatch(
+            new CreateAllergyCommand(
+                $id,
+                $body[AllergyName::primitiveName()],
+                $body[AllergyDescription::primitiveName()] ?? null,
+            ),
+        );
 
         return new JsonResponse(null, Response::HTTP_CREATED);
     }
