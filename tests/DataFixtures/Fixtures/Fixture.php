@@ -2,6 +2,7 @@
 
 namespace App\Tests\DataFixtures\Fixtures;
 
+use App\Tests\DataFixtures\Data\AllergyDataFixture;
 use App\Tests\DataFixtures\Data\DiseaseDataFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture as DoctrineFixture;
 use Doctrine\DBAL\Connection;
@@ -16,6 +17,7 @@ class Fixture extends DoctrineFixture
     public function load(ObjectManager $manager): void
     {
         $this->insert(DiseaseDataFixture::tableName(), DiseaseDataFixture::data());
+        $this->insert(AllergyDataFixture::tableName(), AllergyDataFixture::data());
     }
 
     private function insert(string $tableName, $data): void
