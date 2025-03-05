@@ -9,7 +9,6 @@ use DogCare\Disease\Domain\Disease;
 use DogCare\Disease\Domain\DiseaseDescription;
 use DogCare\Disease\Domain\DiseaseId;
 use DogCare\Disease\Domain\DiseaseName;
-use DogCare\Shared\Domain\ValueObject\Uuid;
 use Symfony\Component\HttpFoundation\Response;
 
 class PostDiseaseControllerTest extends FunctionalTestCase

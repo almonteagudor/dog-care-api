@@ -3,3 +3,6 @@ allergy:
 
 disease:
     resource: disease/disease-routes.yaml
+
+medicine:
+    resource: medicine/medicine-routes.yaml

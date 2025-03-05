@@ -1,0 +1,32 @@
+post-medicine:
+  controller: \App\Controller\Medicine\PostMedicineController
+  methods: POST
+  path: /medicines/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+put-medicine:
+  controller: \App\Controller\Medicine\PutMedicineController
+  methods: PUT
+  path: /medicines/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+delete-medicine:
+  controller: \App\Controller\Medicine\DeleteMedicineController
+  methods: DELETE
+  path: /medicines/{id}
+  requirements:
+    id: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+
+get-medicine:
+  controller: \App\Controller\Medicine\GetMedicineController
+  methods: GET
+  path: /medicines/{id}
+  requirements:
+    id: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+
+get-medicines:
+  controller: \App\Controller\Medicine\GetMedicinesController
+  methods: GET
+  path: /medicines
