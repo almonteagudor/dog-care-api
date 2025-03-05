@@ -1,6 +1,9 @@
 allergy:
     resource: allergy/allergy-routes.yaml
 
+client:
+    resource: client/client-routes.yaml
+
 disease:
     resource: disease/disease-routes.yaml
 
