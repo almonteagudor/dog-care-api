@@ -87,7 +87,7 @@ final class Client extends AggregateRoot
 
     public function updateSurname(ClientSurname $surname): void
     {
-        if ($this->surname->equals($surname)) {
+        if (!$this->surname->equals($surname)) {
             $this->surname = $surname;
             $this->updatedAt = new UpdatedAt();
         }
@@ -95,7 +95,7 @@ final class Client extends AggregateRoot
 
     public function updatePhone(ClientPhone $phone): void
     {
-        if ($this->surname->equals($phone)) {
+        if (!$this->phone->equals($phone)) {
             $this->phone = $phone;
             $this->updatedAt = new UpdatedAt();
         }
@@ -103,7 +103,7 @@ final class Client extends AggregateRoot
 
     public function updateEmail(ClientEmail $email): void
     {
-        if ($this->surname->equals($email)) {
+        if (!$this->email->equals($email)) {
             $this->email = $email;
             $this->updatedAt = new UpdatedAt();
         }
