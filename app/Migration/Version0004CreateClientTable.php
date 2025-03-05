@@ -8,7 +8,6 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Migrations\AbstractMigration;
 use DogCare\Client\Domain\Client;
-use DogCare\Client\Domain\ClientDescription;
 use DogCare\Client\Domain\ClientEmail;
 use DogCare\Client\Domain\ClientId;
 use DogCare\Client\Domain\ClientName;

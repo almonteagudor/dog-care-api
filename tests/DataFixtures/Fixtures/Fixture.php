@@ -3,6 +3,7 @@
 namespace App\Tests\DataFixtures\Fixtures;
 
 use App\Tests\DataFixtures\Data\AllergyDataFixture;
+use App\Tests\DataFixtures\Data\ClientDataFixture;
 use App\Tests\DataFixtures\Data\DiseaseDataFixture;
 use App\Tests\DataFixtures\Data\MedicineDataFixture;
 use Doctrine\Bundle\FixturesBundle\Fixture as DoctrineFixture;
@@ -20,6 +21,7 @@ class Fixture extends DoctrineFixture
         $this->insert(DiseaseDataFixture::tableName(), DiseaseDataFixture::data());
         $this->insert(AllergyDataFixture::tableName(), AllergyDataFixture::data());
         $this->insert(MedicineDataFixture::tableName(), MedicineDataFixture::data());
+        $this->insert(ClientDataFixture::tableName(), ClientDataFixture::data());
     }
 
     private function insert(string $tableName, $data): void
