@@ -1,3 +1,5 @@
-api_controllers:
-    resource: routes/api/api-routes.yaml
-    prefix: 'api'
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
